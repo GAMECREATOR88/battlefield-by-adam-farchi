@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#05080d">
+<link rel="icon" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<title>Battlefield by Adam Farchi</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05080d;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none}
+#game{position:fixed;inset:0}canvas{display:block}
+#hud{position:fixed;inset:0;pointer-events:none}
+.panel{background:rgba(6,12,20,.72);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);box-shadow:0 12px 40px #0008;border-radius:16px}
+#stats{position:absolute;left:16px;top:max(16px,env(safe-area-inset-top));padding:12px 14px;width:180px}
+#money{font-size:21px;font-weight:900}#bar{height:7px;background:#27313b;border-radius:9px;margin-top:7px;overflow:hidden}#health{height:100%;width:100%;background:linear-gradient(90deg,#35dc75,#d9ff6b)}
+#mission{position:absolute;left:50%;transform:translateX(-50%);top:max(16px,env(safe-area-inset-top));padding:12px 16px;min-width:270px;text-align:left}
+#mission b{font-size:13px}.small{font-size:11px;opacity:.72;margin-top:4px}
+#mapbox{position:absolute;right:16px;top:max(16px,env(safe-area-inset-top));width:128px;height:128px;padding:4px}.map{width:100%;height:100%;border-radius:12px}
+#cross{position:absolute;left:50%;top:50%;width:16px;height:16px;transform:translate(-50%,-50%);opacity:.55}.cross:before,.cross:after{content:"";position:absolute;background:#fff}.cross:before{left:7px;top:0;width:2px;height:16px}.cross:after{left:0;top:7px;width:16px;height:2px}
+#stick{position:absolute;left:20px;bottom:max(22px,env(safe-area-inset-bottom));width:145px;height:145px;border:2px solid #ffffff1c;background:#ffffff0d;border-radius:50%;pointer-events:auto}
+#knob{position:absolute;width:60px;height:60px;left:50%;top:50%;margin:-30px;border-radius:50%;background:#ffffff2a;border:1px solid #ffffff45}
+.btn{position:absolute;pointer-events:auto;color:#fff;border:1px solid #ffffff35;background:linear-gradient(145deg,#ffffff27,#0009);box-shadow:0 10px 28px #000a;font-weight:900}
+#action{right:26px;bottom:max(78px,calc(env(safe-area-inset-bottom) + 50px));width:76px;height:76px;border-radius:50%}
+#car{right:118px;bottom:max(24px,env(safe-area-inset-bottom));width:60px;height:60px;border-radius:50%;font-size:11px}
+#run{right:28px;bottom:max(170px,calc(env(safe-area-inset-bottom) + 140px));width:60px;height:60px;border-radius:50%;font-size:11px}
+#look{position:absolute;right:0;top:0;width:62%;height:72%;pointer-events:auto}
+#toast{position:absolute;left:50%;bottom:20%;transform:translateX(-50%);padding:10px 16px;border-radius:999px;background:#05090ee8;border:1px solid #ffffff20;opacity:0;transition:.2s;font-size:12px}
+#intro{position:fixed;z-index:20;inset:0;background:#02050a;display:flex;align-items:center;justify-content:center;transition:opacity 1s}
+#intro img{width:min(86vw,700px);max-height:80vh;object-fit:contain}
+#error{display:none;position:fixed;z-index:99;inset:0;background:#090b10;color:#fff;padding:25px;font:13px monospace;white-space:pre-wrap;overflow:auto}
+@media(max-width:700px){#mission{min-width:0;max-width:48vw}#mapbox{width:106px;height:106px}}
+</style>
+</head>
+<body>
+<div id="game"></div>
+<div id="hud">
+  <div id="stats" class="panel"><div id="money">$0</div><div id="bar"><div id="health"></div></div></div>
+  <div id="mission" class="panel"><b id="missionTitle">MISSION 01 · OCEANVIEW</b><div id="missionText" class="small">Reach the golden marker.</div></div>
+  <div id="mapbox" class="panel"><canvas id="map" width="116" height="116" class="map"></canvas></div>
+  <div id="cross" class="cross"></div>
+  <div id="stick"><div id="knob"></div></div>
+  <div id="look"></div>
+  <button id="action" class="btn">ACTION</button>
+  <button id="car" class="btn">CAR</button>
+  <button id="run" class="btn">RUN</button>
+  <div id="toast"></div>
+</div>
+<div id="intro"><img src="assets/logo.png" alt="Battlefield by Adam Farchi"></div>
+<pre id="error"></pre>
+<script type="module" src="game.js"></script>
+</body>
+</html>
